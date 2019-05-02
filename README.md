@@ -15,12 +15,11 @@ generate_basic_plots.m
   plotArgo.m (creates a filled contour plot based on the interpolation grid)
   addPden.m (adds contour lines for potential density)
   
-plot for conservative temperature:
-![conservative temperature plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/temperature.png)
+plot for conservative temperature (color-time scale corresponds to trajectory below)
+![conservative temperature plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/temperature_t.png)
 
+plot for absolute salinity (color-time scale corresponds to trajectory below)
+![absolute salinity plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/salinity_t.png)
 
-plot for absolute salinity:
-![absolute salinity plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/salinity.png)
-
-local map of the float's trajectory
-![float trajectory](https://github.com/SawyerBrand/176-Data-Project/blob/master/argo_path.png)
+local map of the float's trajectory with same color-time scale as shown on the other plots
+![float trajectory](https://github.com/SawyerBrand/176-Data-Project/blob/master/trajectory.png)
