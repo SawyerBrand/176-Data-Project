@@ -33,7 +33,8 @@ pden_int = interpArgo(data.time,data.z,data.pden,nt,nz);
 nconts = 20;
 colmap = 'jet';
 tit = 'ARGO float 6901814';
-plotArgo(ct_int,nconts,colmap,tit);
+fignum = 1;
+plotArgo(ct_int,nconts,colmap,tit,fignum);
 
 major = 24:0.5:28;
 minor = 27.1:0.1:27.9;
@@ -50,7 +51,8 @@ sa_int = interpArgo(data.time,data.z,data.sa,nt,nz);
 
 colmap = 'parula';
 tit = 'ARGO float 6901814';
-plotArgo(sa_int,nconts,colmap,tit);
+fignum = 2;
+plotArgo(sa_int,nconts,colmap,tit,fignum);
 
 leg = {'absolute salinity [g/kg]', 'potential density'};
 addPden(pden_int,major,minor,leg)
@@ -59,6 +61,70 @@ if saveplots
   export_fig salinity.png -m2
 end
 
+%% plot trajecotry / time 
+% linearly interpolate coordinates in time
+nt = 8000;
+[time, ia, ic] = unique(data.time);
+lat = data.lat(ia);
+lon = data.lon(ia);
+lon(lon<0) = lon(lon<0)+360;
+tinttraj = linspace(min(data.time),max(data.time),nt);
+latint = interp1(time,lat,tinttraj);
+lonint = interp1(time,lon,tinttraj);
+lonint(lonint>180) = lonint(lonint>180) - 360;
 
+% create world map (need mapping toolbox)
+latlim = [-75 -25];
+lonlim = [174 -25];
+fig1 = figure(3);
+set(fig1, 'Position', [0, 0, 1200, 600]);
+subplot('Position',[0.1,0.18,0.8,0.6]);
+ax1 = worldmap('World');
+axesm('robinson','MapLatLimit',latlim,'MapLonLimit',lonlim,...
+    'Frame','on','Grid','on','MeridianLabel','on','ParallelLabel','on')
+axis tight
+load coastlines
+cols = hsv(length(tinttraj));
+set(gca,'fontsize',25)
+title({'ARGO float 6901814 trajectory',' '},'fontsize',28,'interpreter','latex')
 
+% display topography (need etopo for this)
+samplefactor = 5;
+[Z, refvec] = etopo('etopo1_ice_c_i2.bin', samplefactor, latlim, [-180 180]);
+geoshow(Z, refvec, 'DisplayType', 'texturemap');
+demcmap(Z, 256);
+
+% plot trjaectory
+scatterm(latint,lonint,20,'k','filled')
+scatterm(latint,lonint,8,cols,'filled')
+
+% make custom color bar
+ax2 = subplot('Position',[0.12 0.15 0.8 0.03]);
+colbar = datenum(tinttraj);
+colb = pcolor(colbar,1:2,[colbar;colbar]);
+set(colb, 'EdgeColor', 'none');
+colormap(ax2,hsv(length(tinttraj)))
+tticks = {'01-Jul-2013','01-Jan-2014','01-Jul-2014','01-Jan-2015','01-Jul-2015',...
+    '01-Jan-2016','01-Jul-2016','01-Jan-2017','01-Jul-2017','01-Jan-2018','01-Jul-2018','01-Jan-2019'};
+xticks(datenum(tticks))
+xticklabels(tticks)
+yticks([])
+set(gca,'layer','top','fontsize',15)
+xtickangle(45)
+
+if saveplots
+  export_fig trajectory.png -m2
+end
+
+%% add color scale from trajectory
+figure(1)
+scatter(datenum(ct_int.t),repmat(min(ct_int.z),length(ct_int.t),1),80,hsv(length(ct_int.t)),'filled')
+if saveplots
+  export_fig temperature_t.png -m2
+end
+figure(2)
+scatter(datenum(sa_int.t),repmat(min(sa_int.z),length(sa_int.t),1),80,hsv(length(sa_int.t)),'filled')
+if saveplots
+  export_fig salinity_t.png -m2
+end
 
