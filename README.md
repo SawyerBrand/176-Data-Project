@@ -34,3 +34,18 @@ local map of the float's trajectory with same color-time scale as shown on the o
 ![float trajectory](https://github.com/SawyerBrand/176-Data-Project/blob/master/trajectory.png)
 
 
+### Heat Content:
+
+Heat Content Time Series:
+![heat_image](https://user-images.githubusercontent.com/40899724/57598616-bcd87000-7508-11e9-9b16-e77b14ee5074.png)
+
+0-400m Heat Content Time Series:
+![0-400m Heat](https://user-images.githubusercontent.com/40899724/57598598-b0541780-7508-11e9-94f1-a806dcb1fbcd.png)
+
+400-1200m Heat Content Time Series:
+![400-1200m Heat](https://user-images.githubusercontent.com/40899724/57598604-b5b16200-7508-11e9-81a8-94133bb4ac8c.png)
+
+1200m and below Heat Content Time Series:
+![1200m Heat](https://user-images.githubusercontent.com/40899724/57598609-b813bc00-7508-11e9-8730-aa81c3047b35.png)
+
+Above created using argo_process2.m and heat_variability.m
