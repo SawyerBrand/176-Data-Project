@@ -32,3 +32,5 @@ plot for absolute salinity (color-time scale corresponds to trajectory below)
 
 local map of the float's trajectory with same color-time scale as shown on the other plots
 ![float trajectory](https://github.com/SawyerBrand/176-Data-Project/blob/master/trajectory.png)
+
+
