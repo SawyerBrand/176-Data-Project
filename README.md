@@ -27,13 +27,13 @@ Played around a bit with making better-looking trajectory. We can now infer time
 2019-05-13: Added a script that interpolates all data onto an even grid with user-specified layer depth, and includes heat content for each layer. 
   
 plot for conservative temperature (color-time scale corresponds to trajectory below)
-![conservative temperature plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/temperature_t.png)
+![conservative temperature plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/temperature_t.png)
 
 plot for absolute salinity (color-time scale corresponds to trajectory below)
-![absolute salinity plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/salinity_t.png)
+![absolute salinity plot](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/salinity_t.png)
 
 local map of the float's trajectory with same color-time scale as shown on the other plots
-![float trajectory](https://github.com/SawyerBrand/176-Data-Project/blob/master/trajectory.png)
+![float trajectory](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/trajectory.png)
 
 
 ### Heat Content:
@@ -51,5 +51,7 @@ Heat Content Time Series:
 ![1200m Heat](https://user-images.githubusercontent.com/40899724/57598609-b813bc00-7508-11e9-8730-aa81c3047b35.png)
 
 Above created using argo_process2.m and heat_variability.m
+
+![HeatPhilipp](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/heatcontent.png)
 
 
