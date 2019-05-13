@@ -26,9 +26,9 @@ data = process_argo2(fn);
 
 %% plot Conservative Temperature
 nt = 1000;
-nz = 600;
-ct_int = interpArgo(data.time,data.z,data.ct,nt,nz);
-pden_int = interpArgo(data.time,data.z,data.pden,nt,nz);
+dz = 5;
+ct_int = interpArgo(data.time,data.z,data.ct,nt,dz);
+pden_int = interpArgo(data.time,data.z,data.pden,nt,dz);
 
 nconts = 20;
 colmap = 'jet';
@@ -47,7 +47,7 @@ if saveplots
 end
 
 %% plot Absolute salinity
-sa_int = interpArgo(data.time,data.z,data.sa,nt,nz);
+sa_int = interpArgo(data.time,data.z,data.sa,nt,dz);
 
 colmap = 'parula';
 tit = 'ARGO float 6901814';
@@ -74,7 +74,7 @@ lonint = interp1(time,lon,tinttraj);
 lonint(lonint>180) = lonint(lonint>180) - 360;
 
 % create world map (need mapping toolbox)
-latlim = [-75 -25];
+latlim = [-80 -25];
 lonlim = [174 -25];
 fig1 = figure(3);
 set(fig1, 'Position', [0, 0, 1200, 600]);

@@ -1,4 +1,4 @@
-function interpolated = interpArgo(time,depth,variable,nt,nz)
+function interpolated = interpArgo(time,depth,variable,nt,dz)
   t = time;
   z_dat = depth;
   var = variable;
@@ -9,16 +9,19 @@ function interpolated = interpArgo(time,depth,variable,nt,nz)
   var(sum(isnan(var),2)>size(var,2)*0.7,:) = [];
 
   % spline interpolate in depth (only in between points, no extrapolation)
-  z = linspace(min(min(z_dat)),max(max(z_dat)),nz);
-  val_z = nan(size(var,1),nz);
+  z = -(0:dz:-min(min(z_dat)));
+  val_z = nan(size(var,1),length(z));
   for i = 1:size(var,1)
     x = z_dat(i,:);
     y = var(i,:);
     x(isnan(y)) = [];
     y(isnan(y)) = [];
     s = spline(x,y,z);
-    s(z>max(x)) = nan;
+    s(z>0) = nan;
     s(z<min(x)) = nan;
+     % no good data above 10 meters depth, so make it uniform
+    [~,zi] = min(abs(z+10));
+    s(z>-10) = s(zi);
     val_z(i,:) = s;
   end
 

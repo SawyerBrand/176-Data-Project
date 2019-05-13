@@ -1,9 +1,9 @@
-function plotArgo(intp,nconts,cmap,tit)
+function plotArgo(intp,nconts,cmap,tit,fignum)
 
   [tt, zz] = meshgrid(intp.t,intp.z);
   val = intp.val;
 
-  fig1 = figure;
+  fig1 = figure(fignum);
   eval(['colormap(' cmap '(' num2str(500) '));'])
   cmp = jet(nconts+1);
   set(fig1,'units','normalized','outerposition',[0 0 1 1])
