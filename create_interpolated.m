@@ -49,7 +49,7 @@ function intdat = create_interpolated(fn,nt,dz,savemat)
     intdat.layerHeat = layermeanRho .* intdat.cp .* (layermeanT+273.15) .* dz; % [J / m^2]
 
     if savemat
-        save datainterpolated intdat
+        save('data/datainterpolated.mat','intdat')
     end
 
 end

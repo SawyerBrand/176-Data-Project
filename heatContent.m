@@ -8,7 +8,7 @@ if saveplots
   addpath('../expfig/')
 end
 
-fn = '6901814_stations.nc';
+fn = 'data/6901814_stations.nc';
 savemat = true;
 nt = 500;
 dz = 5;
@@ -40,6 +40,6 @@ lgd = legend(lgdtxt);
 set(lgd,'location','northwest','fontsize',10,'interpreter','latex')
 
 if saveplots
-    export_fig heatcontent.png -m2
+    export_fig figs/heatcontent.png -m2
 end
 

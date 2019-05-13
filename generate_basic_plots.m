@@ -15,13 +15,13 @@ clear all
 addpath(genpath('../GSW/'));
 
 % for saving plots, need expfig package
-saveplots = false;
+saveplots = true;
 if saveplots
   addpath('../expfig/')
 end
 
 % import data
-fn = '6901814_stations.nc';
+fn = 'data/6901814_stations.nc';
 data = process_argo2(fn);
 
 %% plot Conservative Temperature
@@ -43,7 +43,7 @@ leg = {['conservative temperature [' char(176) 'C]'], 'potential density'};
 addPden(pden_int,major,minor,leg)
 
 if saveplots
-  export_fig temperature.png -m2
+  export_fig figs/temperature.png -m2
 end
 
 %% plot Absolute salinity
@@ -58,7 +58,7 @@ leg = {'absolute salinity [g/kg]', 'potential density'};
 addPden(pden_int,major,minor,leg)
 
 if saveplots
-  export_fig salinity.png -m2
+  export_fig figs/salinity.png -m2
 end
 
 %% plot trajecotry / time 
@@ -113,18 +113,18 @@ set(gca,'layer','top','fontsize',15)
 xtickangle(45)
 
 if saveplots
-  export_fig trajectory.png -m2
+  export_fig figs/trajectory.png -m2
 end
 
 %% add color scale from trajectory
 figure(1)
 scatter(datenum(ct_int.t),repmat(min(ct_int.z),length(ct_int.t),1),80,hsv(length(ct_int.t)),'filled')
 if saveplots
-  export_fig temperature_t.png -m2
+  export_fig figs/temperature_t.png -m2
 end
 figure(2)
 scatter(datenum(sa_int.t),repmat(min(sa_int.z),length(sa_int.t),1),80,hsv(length(sa_int.t)),'filled')
 if saveplots
-  export_fig salinity_t.png -m2
+  export_fig figs/salinity_t.png -m2
 end
 
