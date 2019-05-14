@@ -41,10 +41,10 @@ function intdat = create_interpolated(fn,nt,dz,savemat)
     intdat.ct = gsw_CT_from_t(intdat.sa, intdat.T, intdat.P);
     intdat.pden = gsw_rho(intdat.sa, intdat.ct, 0);
     intdat.rho = gsw_rho(intdat.sa, intdat.ct, intdat.P);
-    layermeanSA = (intdat.sa(:,1:end-1) + intdat.sa(:,2:end)) ./ 2;
-    layermeanP = (intdat.P(:,1:end-1) + intdat.P(:,2:end)) ./ 2;
-    layermeanT = (intdat.T(:,1:end-1) + intdat.T(:,2:end)) ./ 2;
-    layermeanRho = (intdat.rho(:,1:end-1) + intdat.rho(:,2:end)) ./ 2;
+    intdat.layermeanSA = (intdat.sa(:,1:end-1) + intdat.sa(:,2:end)) ./ 2;
+    intdat.layermeanP = (intdat.P(:,1:end-1) + intdat.P(:,2:end)) ./ 2;
+    intdat.layermeanT = (intdat.T(:,1:end-1) + intdat.T(:,2:end)) ./ 2;
+    intdat.layermeanRho = (intdat.rho(:,1:end-1) + intdat.rho(:,2:end)) ./ 2;
     intdat.cp = gsw_cp_t_exact(layermeanSA,layermeanT,layermeanP);
     intdat.layerHeat = layermeanRho .* intdat.cp .* (layermeanT+273.15) .* dz; % [J / m^2]
 
