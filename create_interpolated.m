@@ -45,8 +45,8 @@ function intdat = create_interpolated(fn,nt,dz,savemat)
     intdat.layermeanP = (intdat.P(:,1:end-1) + intdat.P(:,2:end)) ./ 2;
     intdat.layermeanT = (intdat.T(:,1:end-1) + intdat.T(:,2:end)) ./ 2;
     intdat.layermeanRho = (intdat.rho(:,1:end-1) + intdat.rho(:,2:end)) ./ 2;
-    intdat.cp = gsw_cp_t_exact(layermeanSA,layermeanT,layermeanP);
-    intdat.layerHeat = layermeanRho .* intdat.cp .* (layermeanT+273.15) .* dz; % [J / m^2]
+    intdat.cp = gsw_cp_t_exact(intdat.layermeanSA,intdat.layermeanT,intdat.layermeanP);
+    intdat.layerHeat = intdat.layermeanRho .* intdat.cp .* (intdat.layermeanT+273.15) .* dz; 
 
     if savemat
         save('data/datainterpolated.mat','intdat')
