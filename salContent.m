@@ -41,4 +41,4 @@ set(lgd,'location','northwest','fontsize',10,'interpreter','latex')
 
 if saveplots
     export_fig figs/saltcontent.png -m2
-end
+end  
