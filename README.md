@@ -48,6 +48,9 @@ Above created using argo_process2.m and heat_variability.m
 ![HeatPhilipp](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/heatcontent.png)
 
 
+![HeatPhilippUpper](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/heatcontent_upper.png)
+
+
 ### Salt Content:
 
 ![SaltContent2018](https://user-images.githubusercontent.com/40899724/57817263-7155da00-7733-11e9-8e62-a39dc6c8a0d3.jpg)
