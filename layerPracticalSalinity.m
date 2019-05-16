@@ -21,8 +21,7 @@ zmax = 1800;
 dzlayer = 100;
 depths = fliplr(-[zmin:dzlayer:zmax-dzlayer; zmin+dzlayer:dzlayer:zmax]);
 nlayers = size(depths,2);
-heatLayers = nan(nlayers,1);
-cols = jet(nlayers);
+cols = parula(nlayers);
 fig1 = figure;
 set(fig1,'units','normalized','outerposition',[0 0 1 1])
 hold on
@@ -30,15 +29,14 @@ lgdtxt = cell(1,nlayers);
 minval = inf;
 maxval = -inf;
 for i = 1:nlayers
-    heat = sum(d.layerHeat(:,d.z<=depths(1,i)&d.z>depths(2,i)),2);
-    %heat = movmean(heat,31);
-    plot(d.time,heat,'color',cols(i,:),'linewidth',1)
+    pracSal = mean(d.layermeanSP(:,d.z<=depths(1,i)&d.z>depths(2,i)),2);
+    plot(d.time,pracSal,'color',cols(i,:),'linewidth',1)
     lgdtxt{i} = sprintf('%dm to %dm',depths(1,i),depths(2,i));
-    if min(heat) < minval
-        minval = min(heat);
+    if min(pracSal) < minval
+        minval = min(pracSal);
     end
-    if max(heat) > maxval
-        maxval = max(heat);
+    if max(pracSal) > maxval
+        maxval = max(pracSal);
     end
 end
 yl = [minval - 0.1*(maxval-minval) maxval + 0.1*(maxval-minval)];
@@ -59,12 +57,12 @@ grid on
 
 title('ARGO float 6901814','fontsize',18,'interpreter','latex')
 xlabel('time','fontsize',18,'interpreter','latex')
-ylabel('depth-integrated heat content [J m$^{-2}$]','fontsize',18,'interpreter','latex')
+ylabel('layer average practical salinity [psu]','fontsize',18,'interpreter','latex')
 lgd = legend(lgdtxt);
-set(lgd,'location','northwest','fontsize',13,'interpreter','latex','color','none')
+set(lgd,'location','northwest','fontsize',11,'interpreter','latex','color','none')
 set(gca,'color','none')
 if saveplots
-    export_fig figs/heatcontent.png -m2 -transparent
+    export_fig figs/layerMeanPracSal.png -m2 -transparent
 end
 
 % plot upper part with movmean
@@ -74,8 +72,7 @@ dzlayer = 20;
 movmeandays = 90; 
 depths = fliplr(-[zmin:dzlayer:zmax-dzlayer; zmin+dzlayer:dzlayer:zmax]);
 nlayers = size(depths,2);
-heatLayers = nan(nlayers,1);
-cols = jet(nlayers);
+cols = parula(nlayers);
 fig1 = figure;
 set(fig1,'units','normalized','outerposition',[0 0 1 1])
 hold on
@@ -85,15 +82,15 @@ movmeannum = round(movmeandays*24/hours(dt));
 minval = inf;
 maxval = -inf;
 for i = 1:nlayers
-    heat = sum(d.layerHeat(:,d.z<=depths(1,i)&d.z>depths(2,i)),2);
-    heat = movmean(heat,movmeannum);
-    plot(d.time,heat,'color',cols(i,:),'linewidth',1)
+    pracSal = mean(d.layermeanSP(:,d.z<=depths(1,i)&d.z>depths(2,i)),2);
+    pracSal = movmean(pracSal,movmeannum);
+    plot(d.time,pracSal,'color',cols(i,:),'linewidth',1)
     lgdtxt{i} = sprintf('%dm to %dm',depths(1,i),depths(2,i));
-    if min(heat) < minval
-        minval = min(heat);
+    if min(pracSal) < minval
+        minval = min(pracSal);
     end
-    if max(heat) > maxval
-        maxval = max(heat);
+    if max(pracSal) > maxval
+        maxval = max(pracSal);
     end
 end
 yl = [minval - 0.1*(maxval-minval) maxval + 0.1*(maxval-minval)];
@@ -115,10 +112,10 @@ grid on
 title(sprintf('ARGO float 6901814 (moving mean: %d days)',movmeandays),...
     'fontsize',18,'interpreter','latex')
 xlabel('time','fontsize',18,'interpreter','latex')
-ylabel('depth-integrated heat content [J m$^{-2}$]','fontsize',18,'interpreter','latex')
+ylabel('layer average practical salinity [psu]','fontsize',18,'interpreter','latex')
 lgd = legend(lgdtxt);
 set(lgd,'location','northwest','fontsize',14,'interpreter','latex','color','none')
 set(gca,'color','none')
 if saveplots
-    export_fig figs/heatcontent_upper.png -m2 -transparent
+    export_fig figs/layerMeanPracSal_upper.png -m2 -transparent
 end
