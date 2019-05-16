@@ -41,9 +41,9 @@ minor = 27.1:0.1:27.9;
 minor(5) = [];
 leg = {['conservative temperature [' char(176) 'C]'], 'potential density'};
 addPden(pden_int,major,minor,leg)
-
+set(gca,'color','none')
 if saveplots
-  export_fig figs/temperature.png -m2
+  export_fig figs/temperature.png -m2 -transparent
 end
 
 %% plot Absolute salinity
@@ -56,9 +56,9 @@ plotArgo(sa_int,nconts,colmap,tit,fignum);
 
 leg = {'absolute salinity [g/kg]', 'potential density'};
 addPden(pden_int,major,minor,leg)
-
+set(gca,'color','none')
 if saveplots
-  export_fig figs/salinity.png -m2
+  export_fig figs/salinity.png -m2 -transparent
 end
 
 %% plot trajecotry / time 
@@ -86,7 +86,7 @@ axis tight
 load coastlines
 cols = hsv(length(tinttraj));
 set(gca,'fontsize',25)
-title({'ARGO float 6901814 trajectory',' '},'fontsize',28,'interpreter','latex')
+%title({'ARGO float 6901814 trajectory',' '},'fontsize',28,'interpreter','latex')
 
 % display topography (need etopo for this)
 samplefactor = 5;
@@ -99,7 +99,7 @@ scatterm(latint,lonint,20,'k','filled')
 scatterm(latint,lonint,8,cols,'filled')
 
 % make custom color bar
-ax2 = subplot('Position',[0.12 0.15 0.8 0.03]);
+ax2 = subplot('Position',[0.12 0.15 0.75 0.03]);
 colbar = datenum(tinttraj);
 colb = pcolor(colbar,1:2,[colbar;colbar]);
 set(colb, 'EdgeColor', 'none');
@@ -109,22 +109,24 @@ tticks = {'01-Jul-2013','01-Jan-2014','01-Jul-2014','01-Jan-2015','01-Jul-2015',
 xticks(datenum(tticks))
 xticklabels(tticks)
 yticks([])
-set(gca,'layer','top','fontsize',15)
+set(gca,'layer','top','fontsize',13)
 xtickangle(45)
-
+set(gca,'color','none')
 if saveplots
-  export_fig figs/trajectory.png -m2
+  export_fig figs/trajectory.png -m2 -transparent
 end
 
 %% add color scale from trajectory
 figure(1)
 scatter(datenum(ct_int.t),repmat(min(ct_int.z),length(ct_int.t),1),80,hsv(length(ct_int.t)),'filled')
+set(gca,'color','none')
 if saveplots
-  export_fig figs/temperature_t.png -m2
+  export_fig figs/temperature_t.png -m2 -transparent
 end
 figure(2)
 scatter(datenum(sa_int.t),repmat(min(sa_int.z),length(sa_int.t),1),80,hsv(length(sa_int.t)),'filled')
+set(gca,'color','none')
 if saveplots
-  export_fig figs/salinity_t.png -m2
+  export_fig figs/salinity_t.png -m2 -transparent
 end
 
