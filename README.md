@@ -43,6 +43,9 @@ plot for absolute salinity (color-time scale corresponds to trajectory below)
 ### Heat Content:
 
 Heat Content Time Series:
+
+![HeatContent2018](https://user-images.githubusercontent.com/40899724/57872088-c5a69b80-77bf-11e9-88d1-6785524b1c15.jpg)
+
 ![heat_image](https://user-images.githubusercontent.com/40899724/57598616-bcd87000-7508-11e9-9b16-e77b14ee5074.png)
 
 ![Layer Heat Philipp](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/heatcontent.png)
@@ -51,6 +54,8 @@ Heat Content Time Series:
 
 
 ### Salt Content:
+
+![SaltContent2018](https://user-images.githubusercontent.com/40899724/57872063-bc1d3380-77bf-11e9-853d-b7624a313b2a.jpg)
 
 ![Layer Salinity](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/layerMeanPracSal.png)
 
