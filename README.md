@@ -56,11 +56,7 @@ Heat Content Time Series:
 
 ![Layer Salinity Upper](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/layerMeanPracSal_upper.png)
 
-### Salt Content:
 
-![Layer Salinity](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/layerMeanPracSal.png)
-
-![Layer Salinity Upper](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/layerMeanPracSal_upper.png)
 
 ### Mixed Layer Depth:
 
