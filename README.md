@@ -68,3 +68,9 @@ Heat Content Time Series:
 ![Mixed Layer Depth](https://github.com/SawyerBrand/176-Data-Project/blob/master/figs/MLdepth.png)
 
 
+### CT/AS diagram like I should have done earlier:
+
+![CT:AS](https://user-images.githubusercontent.com/40899724/57988471-cb141800-7a43-11e9-8054-88306c2c2d53.jpg)
+
+
+
